@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portofolio Profesional | Nuflycen Werung</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        /* --- PENGATURAN WARNA GELAP & MODERN --- */
+        :root {
+            --bg-body: #0a192f;
+            --bg-card: #112240;
+            --primary: #64ffda;
+            --text-main: #ccd6f6;
+            --text-sub: #8892b0;
+            --white: #ffffff;
+            --transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
+            
+            --whatsapp: #25D366;
+            --instagram: #E1306C;
+            --facebook: #1877F2;
+        }
+
+        /* EFEK MELUNCUR MULUS */
+        html { scroll-behavior: smooth; }
+
+        body { 
+            font-family: 'Poppins', sans-serif; 
+            margin: 0; 
+            padding: 0; 
+            background-color: var(--bg-body); 
+            color: var(--text-main); 
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* --- KELAS ANIMASI SCROLL --- */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .animate-on-scroll.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- NAVIGASI --- */
+        header { 
+            background: rgba(10, 25, 47, 0.85); 
+            backdrop-filter: blur(10px);        
+            padding: 15px 10%; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            box-shadow: 0 10px 30px -10px rgba(2,12,27,0.7); 
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-weight: 700; 
+            font-size: 1.4em; 
+            color: var(--primary);
+            text-decoration: none;
+            font-family: monospace; 
+        }
+
+        nav a { 
+            text-decoration: none; 
+            color: var(--text-main); 
+            margin-left: 20px; 
+            font-weight: 400;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+
+        nav a:hover {
+            color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        /* --- HERO SECTION --- */
+        .hero { 
+            text-align: center; 
+            padding: 120px 20px 80px; 
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .profile-pic {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--primary);
+            margin-bottom: 25px;
+            box-shadow: 0 10px 30px -5px rgba(100, 255, 218, 0.3);
+            transition: var(--transition);
+        }
+
+        .profile-pic:hover { transform: scale(1.05); }
+
+        .hero h1 { 
+            font-size: 3.5em; 
+            margin: 0 0 10px 0; 
+            color: var(--white); 
+            font-weight: 700;
+        }
+
+        .hero p { 
+            font-size: 1.2em; 
+            color: var(--text-sub); 
+            margin-bottom: 40px;
+            max-width: 600px;
+        }
+
+        /* --- GAYA KOTAK KONTEN (BOX/BORDER BARU) --- */
+        .content-box {
+            background: var(--bg-card);
+            border: 1px solid rgba(100, 255, 218, 0.15); /* Border tipis menyala */
+            border-radius: 16px; /* Sudut melengkung */
+            padding: 40px;
+            box-shadow: 0 10px 30px -10px rgba(2,12,27,0.7);
+            transition: var(--transition);
+        }
+
+        .content-box:hover {
+            border-color: rgba(100, 255, 218, 0.4);
+            box-shadow: 0 15px 35px -5px rgba(2,12,27,0.9);
+        }
+
+        /* --- TATA LETAK DUA KOLOM --- */
+        .main-content {
+            padding: 40px 10%;
+            max-width: 1200px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        .section h2 {
+            color: var(--white);
+            font-size: 1.6rem;
+            margin-top: 0;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+        }
+
+        .section h2::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 1px;
+            background: var(--primary);
+            margin-left: 20px;
+            opacity: 0.5;
+        }
+
+        .about-text p {
+            color: var(--text-sub);
+            font-size: 1rem;
+            margin-bottom: 15px;
+        }
+
+        /* --- GRID KEAHLIAN DI DALAM KOTAK --- */
+        .skills-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); 
+            gap: 15px; 
+        }
+
+        .skill-card { 
+            background: rgba(255, 255, 255, 0.03); /* Sedikit transparan agar kontras dengan box */
+            padding: 20px; 
+            border-radius: 8px; 
+            text-align: center; 
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: var(--transition);
+        }
+
+        .skill-card:hover {
+            background: rgba(100, 255, 218, 0.05);
+            border-color: var(--primary);
+            transform: translateY(-5px); 
+        }
+
+        .skill-card i {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .skill-card span {
+            color: var(--white);
+            font-weight: 500;
+            font-size: 0.85rem;
+        }
+
+        /* --- BAGIAN KONTAK --- */
+        .contact-section {
+            padding: 60px 10% 100px;
+            max-width: 800px;
+            margin: auto;
+        }
+
+        .contact-container {
+            text-align: center;
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 50px;
+            box-shadow: 0 10px 30px -10px rgba(2,12,27,0.7);
+            border: 1px solid rgba(100, 255, 218, 0.15);
+            transition: var(--transition);
+        }
+        
+        .contact-container:hover {
+            border-color: rgba(100, 255, 218, 0.4);
+        }
+
+        .contact-container h2 {
+            justify-content: center;
+            margin-bottom: 15px;
+        }
+
+        .contact-container h2::after { display: none; } 
+
+        .contact-container p {
+            color: var(--text-sub);
+            margin-bottom: 30px;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .contact-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 28px;
+            border-radius: 30px;
+            text-decoration: none;
+            color: var(--white);
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: var(--transition);
+        }
+
+        .contact-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px -5px rgba(2,12,27,0.5);
+            opacity: 0.9;
+        }
+
+        .btn-wa { background-color: var(--whatsapp); }
+        .btn-ig { background-color: var(--instagram); }
+        .btn-fb { background-color: var(--facebook); }
+
+        footer { 
+            text-align: center; 
+            padding: 30px; 
+            background: var(--bg-body); 
+            color: var(--text-sub);
+            font-size: 0.8em;
+            font-family: monospace;
+            border-top: 1px solid var(--bg-card);
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                grid-template-columns: 1fr; 
+                gap: 30px;
+                padding: 40px 5%;
+            }
+            .hero h1 { font-size: 2.5em; }
+            header { padding: 15px 5%; }
+            .content-box { padding: 30px 20px; }
+            .contact-links { flex-direction: column; gap: 15px; }
+            .contact-section { padding: 40px 5% 80px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="#" class="logo">&lt;CHN&gt;</a> 
+        <nav>
+            <a href="#tentang">Tentang</a>
+            <a href="#keahlian">Keahlian</a>
+            <a href="#kontak">Kontak</a>
+        </nav>
+    </header>
+
+    <section class="hero animate-on-scroll">
+        <img src="foto-profil.jpg" alt="Nuflycen Werung" class="profile-pic">
+        <h1>Nuflycen Werung</h1>
+        <p>Lulusan Informatika | Berfokus pada IT Support & Infrastruktur Sistem yang Handal</p>
+    </section>
+
+    <div id="tentang" class="main-content">
+        
+        <section class="section about-text content-box animate-on-scroll">
+            <h2>Tentang Saya</h2>
+            <p>Saya adalah profesional TI yang berdedikasi tinggi untuk memastikan sistem software, hardware dan infrastruktur jaringan berjalan optimal. Saya terbiasa bekerja secara mandiri, sangat menikmati proses identifikasi kendala teknis (troubleshooting), serta mencari solusi paling efisien.</p>
+            <p>Fokus utama saya adalah mendukung produktivitas operasional perusahaan melalui pemeliharaan perangkat keras dan perangkat lunak yang responsif dan tepat sasaran.</p>
+        </section>
+
+        <section id="keahlian" class="section content-box animate-on-scroll">
+            <h2>Keahlian Teknis</h2>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <i class="fas fa-network-wired"></i>
+                    <span>Troubleshooting Jaringan</span>
+                </div>
+                <div class="skill-card">
+                    <i class="fas fa-desktop"></i>
+                    <span>Instalasi OS & Software</span>
+                </div>
+                <div class="skill-card">
+                    <i class="fas fa-tools"></i>
+                    <span>Manajemen Perangkat Keras</span>
+                </div>
+                <div class="skill-card">
+                    <i class="fas fa-ticket-alt"></i>
+                    <span>Sistem Helpdesk & Tiketing</span>
+                </div>
+            </div>
+        </section>
+
+    </div>
+    
+    <section id="kontak" class="contact-section">
+        <div class="contact-container animate-on-scroll">
+            <h2>Mari Terhubung</h2>
+            <p>Jika Anda memiliki pertanyaan teknis atau peluang kerja sama, jangan ragu untuk menghubungi saya melalui saluran di bawah ini.</p>
+            
+            <div class="contact-links">
+                <a href="https://wa.me/6285340178337" class="contact-btn btn-wa" target="_blank">
+                    <i class="fab fa-whatsapp"></i> WhatsApp
+                </a>
+                <a href="https://instagram.com/chenwerung" class="contact-btn btn-ig" target="_blank">
+                    <i class="fab fa-instagram"></i> Instagram
+                </a>
+                <a href="https://facebook.com/chenwerung" class="contact-btn btn-fb" target="_blank">
+                    <i class="fab fa-facebook-f"></i> Facebook
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>Didesain & Dibangun oleh Nuflycen Werung &copy; 2026</p>
+    </footer>
+
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('show');
+                }
+            });
+        }, {
+            threshold: 0.1 
+        });
+
+        const hiddenElements = document.querySelectorAll('.animate-on-scroll');
+        hiddenElements.forEach((el) => observer.observe(el));
+    </script>
+
+</body>
+</html>
